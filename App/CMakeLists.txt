@@ -11,6 +11,8 @@ project(App VERSION 1.0.0 LANGUAGES C CXX)
 
 ## Include all of the F prime core components, and imports the make-system.
 include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime.cmake")
+
+
 # NOTE: register custom targets between these two lines
 include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime-Code.cmake")
 
@@ -20,8 +22,12 @@ include("${CMAKE_CURRENT_LIST_DIR}/App.cmake")
 # Add Topology subdirectory
 add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Top/")
 
-set(SOURCE_FILES "${CMAKE_CURRENT_LIST_DIR}/Top/Main.cpp")
+set(SOURCE_FILES "${CMAKE_CURRENT_LIST_DIR}/Main.cpp")
 set(MOD_DEPS ${PROJECT_NAME}/Top)
+
+set(OPTIMIZATION_FLAGS "-Os")
+set(CMAKE_C_FLAGS "${OPTIMIZATION_FLAGS}")
+set(CMAKE_CXX_FLAGS "${OPTIMIZATION_FLAGS}")
 
 register_fprime_deployment()
 # The following compile options will only apply to the deployment executable.
@@ -38,4 +44,9 @@ target_compile_options(${PROJECT_NAME} PUBLIC -Wold-style-cast)
 target_compile_options(${PROJECT_NAME} PUBLIC -Woverloaded-virtual)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wno-unused-parameter)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wundef)
+
+
+# target_compile_options(${PROJECT_NAME} PUBLIC -Os)
+
+
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)

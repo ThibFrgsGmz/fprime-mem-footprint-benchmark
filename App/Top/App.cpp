@@ -6,12 +6,9 @@
 App::TopologyState state;
 
 namespace App {
-    void Initialize(const char *hostname, uint32_t port_number) {
-
-        state = App::TopologyState(hostname, port_number);
+    void Initialize() {
+        state = App::TopologyState();
         App::setup(state);
-        
-
     }
     void Deinitialize() {
         App::teardown(state);
