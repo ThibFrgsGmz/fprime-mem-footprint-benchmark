@@ -16,6 +16,8 @@ The metrics considered relevant to evaluate the minimum size of F´ are:
 | ABI Version |  0                             |
 | Machine     |  Advanced Micro Devices X86-64 |
 
+# Customing only F´ syombols
+
 Initially we measured these artifacts only by customizing some symbols dimensioning the compiled code of the framework. Let's say:
 - [FW_OBJECT_NAMES](./fprime/docs/UsersGuide/dev/configuring-fprime.md#object-naming),
 - [FW_OBJECT_REGISTRATION](./fprime/docs/UsersGuide/dev/configuring-fprime.md#object-registry),
@@ -28,7 +30,7 @@ Initially we measured these artifacts only by customizing some symbols dimension
 
 For more information, see the note on the configuration of F´ available in the project documentation: [fprime/docs/UsersGuide/dev/configuring-fprime.md](./fprime/docs/UsersGuide/dev/configuring-fprime.md)
 
-**All measurements were made at commit [7890e7d](https://github.com/nasa/fprime/tree/7890e7d8f7f5af79dd57c1dbd8235fcb6bb975b3) of the project, which is the 4900th commit 😁.**
+**All measurements were made with `GNU 10.3.0` at commit [7890e7d](https://github.com/nasa/fprime/tree/7890e7d8f7f5af79dd57c1dbd8235fcb6bb975b3) of the project, which is the 4900th commit 😁.**
 
 We proceeded in 7 steps, the step n repeats the same configurations as the previous step n-1 to which we add a delta by deactivating a previously activated symbol.
 
@@ -41,4 +43,6 @@ We proceeded in 7 steps, the step n repeats the same configurations as the previ
 | 5    | FW_ENABLE_TEXT_LOGGING = 0        | 23.7 Kb    | 2.7 Kb       | 24 bits    | 224 bits  | 465 Kb   | 337 Kb   |
 | 6    | FW_SERIALIZABLE_TO_STRING = 0     | 21.5 Kb    | 2.4 Kb       | 24 bits    | 224 bits  | 412 Kb   | 295 Kb   |
 | 7    | FW_PORT_SERIALIZATION = 0         | 10.2 Kb    | 2.1 Kb       | 24 bits    | 216 bits  | 276 Kb   | 204 Kb   |
+
+
 
