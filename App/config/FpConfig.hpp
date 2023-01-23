@@ -317,7 +317,7 @@ struct FpLimits : BasicLimits {
 // Define if serializables have toString() method. Turning off will save code space and
 // string constants. Must be enabled if text logging enabled
 #ifndef FW_SERIALIZABLE_TO_STRING
-#define FW_SERIALIZABLE_TO_STRING			1    //!< Indicates if autocoded serializables have toString() methods
+#define FW_SERIALIZABLE_TO_STRING			0    //!< Indicates if autocoded serializables have toString() methods
 #endif
 
 #if FW_SERIALIZABLE_TO_STRING
