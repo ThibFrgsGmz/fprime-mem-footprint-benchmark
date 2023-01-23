@@ -135,7 +135,7 @@ struct FpLimits : BasicLimits {
 // Adds the ability for all component related objects to register
 // centrally.
 #ifndef FW_OBJECT_REGISTRATION
-#define FW_OBJECT_REGISTRATION              1   //!< Indicates whether or not objects can register themselves (more code, more object tracking)
+#define FW_OBJECT_REGISTRATION              0   //!< Indicates whether or not objects can register themselves (more code, more object tracking)
 #endif
 
 #ifndef FW_QUEUE_REGISTRATION

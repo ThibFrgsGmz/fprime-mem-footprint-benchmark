@@ -15,7 +15,7 @@ FPrime memory footprint benchmark
 |------|-----------------------------------|------------|--------------|------------|-----------|----------|----------|
 | 1    | Default                           | 65b5       | 0c9d         | 018        | 02f8      | 77576     | 56576 |
 | 2    | FW_OBJECT_NAMES = 0               | 05fd5      | 0acd         | 018        | 0128      | 77184     | 56576 |
-| 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
+| 3    | FW_OBJECT_REGISTRATION = 0        | 5f35       | 00aad        | 018        | 00120     | 76768     | 56576 |
 | 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
 | 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
 | 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
