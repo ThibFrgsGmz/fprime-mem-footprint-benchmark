@@ -25,9 +25,6 @@ add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Top/")
 set(SOURCE_FILES "${CMAKE_CURRENT_LIST_DIR}/Main.cpp")
 set(MOD_DEPS ${PROJECT_NAME}/Top)
 
-set(OPTIMIZATION_FLAGS "-Os")
-set(CMAKE_C_FLAGS "${OPTIMIZATION_FLAGS}")
-set(CMAKE_CXX_FLAGS "${OPTIMIZATION_FLAGS}")
 
 register_fprime_deployment()
 # The following compile options will only apply to the deployment executable.
@@ -44,9 +41,5 @@ target_compile_options(${PROJECT_NAME} PUBLIC -Wold-style-cast)
 target_compile_options(${PROJECT_NAME} PUBLIC -Woverloaded-virtual)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wno-unused-parameter)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wundef)
-
-
-# target_compile_options(${PROJECT_NAME} PUBLIC -Os)
-
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
