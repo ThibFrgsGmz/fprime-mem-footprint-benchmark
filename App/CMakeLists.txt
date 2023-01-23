@@ -10,17 +10,17 @@ cmake_policy(SET CMP0048 NEW)
 project(App VERSION 1.0.0 LANGUAGES C CXX)
 
 ## Include all of the F prime core components, and imports the make-system.
-include(${FPRIME_FRAMEWORK_PATH}/cmake/FPrime.cmake)
+include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime.cmake")
 # NOTE: register custom targets between these two lines
-include(${FPRIME_FRAMEWORK_PATH}/cmake/FPrime-Code.cmake)
+include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime-Code.cmake")
 
 # Includes component subdirectories
-include(${CMAKE_CURRENT_LIST_DIR}/App.cmake)
+include("${CMAKE_CURRENT_LIST_DIR}/App.cmake")
 
 # Add Topology subdirectory
-add_fprime_subdirectory(${CMAKE_CURRENT_LIST_DIR}/Top/)
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Top/")
 
-set(SOURCE_FILES ${CMAKE_CURRENT_LIST_DIR}/Top/Main.cpp)
+set(SOURCE_FILES "${CMAKE_CURRENT_LIST_DIR}/Top/Main.cpp")
 set(MOD_DEPS ${PROJECT_NAME}/Top)
 
 register_fprime_deployment()
