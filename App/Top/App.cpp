@@ -1,25 +1,23 @@
 
-#include <Os/Log.hpp>
 #include <App/Top/AppTopologyAc.hpp>
 #include "App.hpp"
+#include "App/ComponentA/ComponentA.hpp"
+
 App::TopologyState state;
-// Enable the console logging provided by Os::Log
-Os::Log logger;
 
-
-namespace Ref {
+namespace App {
     void Initialize(const char *hostname, uint32_t port_number) {
 
         state = App::TopologyState(hostname, port_number);
         App::setup(state);
         
+
     }
     void Deinitialize() {
         App::teardown(state);
     }
     void run_one_cycle() {
     
-        App::blockDrv.callIsr();
-        Os::Task::delay(1000); //1Hz
+        App::componentA.in_f32_handler(0, 3.0f);
     }
 }

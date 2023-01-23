@@ -1,36 +1,33 @@
 #include <getopt.h>
+#include <cstdio>
 #include <cstdlib>
 #include <ctype.h>
 #include <stdint.h>
+#include <signal.h>
 #include "App.hpp"
+
+volatile sig_atomic_t terminate = 0;
+
 void print_usage(const char* app) {
     (void) printf("Usage: ./%s [options]\n-p\tport_number\n-a\thostname/IP address\n",app);
 }
 
-#include <signal.h>
-#include <cstdio>
-
-
-volatile sig_atomic_t terminate = 0;
-
 static void sighandler(int signum) {
-    Ref::Deinitialize();
+    App::Deinitialize();
     terminate = 1;
 }
-
 
 void runcycles(int cycles) {
     if (cycles == -1) {
         while (true) {
-            Ref::run_one_cycle();
+            App::run_one_cycle();
         }
     }
 
     for (int cycle = 0; cycle < cycles; cycle++) {
-        Ref::run_one_cycle();
+        App::run_one_cycle();
     }
 }
-
 int main(int argc, char* argv[]) {
     uint32_t port_number = 0; // Invalid port number forced
     int option;
@@ -60,7 +57,7 @@ int main(int argc, char* argv[]) {
 
     (void) printf("Hit Ctrl-C to quit\n");
 
-    Ref::Initialize(hostname, port_number);
+    App::Initialize(hostname, port_number);
 
     // register signal handlers to exit program
     signal(SIGINT,sighandler);
@@ -69,7 +66,7 @@ int main(int argc, char* argv[]) {
     int cycle = 0;
 
     while (!terminate) {
-//        (void) printf("Cycle %d\n",cycle);
+       (void) printf("Cycle %d\n",cycle);
         runcycles(1);
         cycle++;
     }
