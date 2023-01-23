@@ -16,7 +16,7 @@ The metrics considered relevant to evaluate the minimum size of F´ are:
 | ABI Version |  0                             |
 | Machine     |  Advanced Micro Devices X86-64 |
 
-# Customing only F´ syombols
+# Customing F´ symbols only
 
 Initially we measured these artifacts only by customizing some symbols dimensioning the compiled code of the framework. Let's say:
 - [FW_OBJECT_NAMES](./fprime/docs/UsersGuide/dev/configuring-fprime.md#object-naming),
@@ -45,4 +45,17 @@ We proceeded in 7 steps, the step n repeats the same configurations as the previ
 | 7    | FW_PORT_SERIALIZATION = 0         | 10.2 Kb    | 2.1 Kb       | 24 bits    | 216 bits  | 276 Kb   | 204 Kb   |
 
 
+# Customizing the toolchain options
 
+Regarding the options passed to the toolchain, i.e. the compiler and the linker, we did not see any real difference compared to the measurements obtained in step 7.
+Only the linker option in step 5 subtly reduces the footprint - insignificant. We marked "x" when the value did not change.
+
+| Step | Description                         | Size .text | Size .rodata | Size .data | Size .bss | Size elf | Size bin |
+|------|-------------------------------------|------------|--------------|------------|-----------|----------|----------|
+| 1    | Step 7 configuration                | 10.197 Kb  | 2.178 Kb     | 24 bits    | 216 bits  | 276 Kb   | 204 Kb   |
+| 2    | -fno-exceptions -fno-rtti           | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
+| 3    | -ffunction-sections -fdata-sections | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
+| 4    | -flto                               | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
+| 5    | -Wl,--gc-sections                   | 10.133 Kb  | 2.154 Kb     | 16 bits    | x bits    | x Kb     | 203 Kb   |
+| 6    | -fno-unroll-loops                   | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
+| 7    | -fno-jump-tables                    | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
