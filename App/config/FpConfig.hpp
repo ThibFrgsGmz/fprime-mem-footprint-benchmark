@@ -306,7 +306,7 @@ struct FpLimits : BasicLimits {
 
 // enables text logging of events as well as data logging. Adds a second logging port for text output.
 #ifndef FW_ENABLE_TEXT_LOGGING
-#define FW_ENABLE_TEXT_LOGGING				 1    //!< Indicates whether text logging is turned on
+#define FW_ENABLE_TEXT_LOGGING				 0    //!< Indicates whether text logging is turned on
 #endif
 
  // Define the size of the text log string buffer. Should be large enough for format string and arguments
