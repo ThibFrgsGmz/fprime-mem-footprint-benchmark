@@ -11,8 +11,6 @@ project(App VERSION 1.0.0 LANGUAGES C CXX)
 
 ## Include all of the F prime core components, and imports the make-system.
 include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime.cmake")
-
-
 # NOTE: register custom targets between these two lines
 include("${FPRIME_FRAMEWORK_PATH}/cmake/FPrime-Code.cmake")
 
@@ -40,8 +38,6 @@ set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--gc-sections")
 # Following NOT WORKING : profile count data file not found [-Wmissing-profile]
 # set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-generate -fprofile-use")
 
-
-
 register_fprime_deployment()
 # The following compile options will only apply to the deployment executable.
 # The extra warnings trigger in core F Prime so we don't apply them there.
@@ -59,8 +55,3 @@ target_compile_options(${PROJECT_NAME} PUBLIC -Wno-unused-parameter)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wundef)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
-
-
-message(C FLAGS => ${CMAKE_C_FLAGS})
-message(CXX FLAGS => ${CMAKE_CXX_FLAGS})
-message(LINKER FLAGS => ${CMAKE_EXE_LINKER_FLAGS})
