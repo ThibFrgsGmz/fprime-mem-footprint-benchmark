@@ -18,7 +18,6 @@ FPrime memory footprint benchmark
 | 3    | FW_OBJECT_REGISTRATION = 0        | 5f35       | 00aad        | 018        | 00120     | 76768     | 56576 |
 | 4    | FW_PORT_TRACING = 0               | 5cb5       | 0a8d         | 018        | 000e0     | 71976     | 52480 |
 | 5    | FW_ENABLE_TEXT_LOGGING = 0        | 5cb5       | 0a8d         | 018        | 000e0     | 71976     | 52480 |
-| 6    | FW_SERIALIZABLE_TO_STRING = 0     | 53f5       | 09b4         | xxx        | xxx       | 66192     | 48384 |
-| 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
-| 2    |                                   | xxxx       | xxxx         | xxx        | xxx       | xxxx      | xxx   |
+| 6    | FW_SERIALIZABLE_TO_STRING = 0     | 53f5       | 09b4         | 018        | 000e0     | 66192     | 48384 |
+| 7    | FW_PORT_SERIALIZATION = 0         | 27e5       | 0882         | 018        | 000d8     | 43752     | 32000 |
 
