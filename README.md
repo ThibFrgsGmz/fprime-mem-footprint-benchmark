@@ -28,6 +28,7 @@ Initially we measured these artifacts only by customizing some symbols dimension
 
 For more information, see the note on the configuration of F´ available in the project documentation: [fprime/docs/UsersGuide/dev/configuring-fprime.md](./fprime/docs/UsersGuide/dev/configuring-fprime.md)
 
+**All measurements were made at commit [7890e7d](https://github.com/nasa/fprime/tree/7890e7d8f7f5af79dd57c1dbd8235fcb6bb975b3) of the project, which is the 4900th commit 😁.**
 
 We proceeded in 7 steps, the step n repeats the same configurations as the previous step n-1 to which we add a delta by deactivating a previously activated symbol.
 
