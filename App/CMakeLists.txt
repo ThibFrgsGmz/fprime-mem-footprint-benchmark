@@ -25,6 +25,22 @@ add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/Top/")
 set(SOURCE_FILES "${CMAKE_CURRENT_LIST_DIR}/Main.cpp")
 set(MOD_DEPS ${PROJECT_NAME}/Top)
 
+set(COMPILER_OPTIMIZATION_FLAGS "-Os")
+
+set(CMAKE_C_FLAGS "${COMPILER_OPTIMIZATION_FLAGS}")
+set(CMAKE_CXX_FLAGS "${COMPILER_OPTIMIZATION_FLAGS} -fno-exceptions")
+set(CMAKE_CXX_FLAGS "${COMPILER_OPTIMIZATION_FLAGS} -fno-rtti")
+set(CMAKE_CXX_FLAGS "${COMPILER_OPTIMIZATION_FLAGS} -ffunction-sections -fdata-sections")
+set(CMAKE_CXX_FLAGS "${COMPILER_OPTIMIZATION_FLAGS} -fno-unroll-loops")
+set(CMAKE_CXX_FLAGS "${COMPILER_OPTIMIZATION_FLAGS} -fno-jump-tables")
+
+set(CMAKE_EXE_LINKER_FLAGS "-fno-jump-tables")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -flto")
+set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -Wl,--gc-sections")
+# Following NOT WORKING : profile count data file not found [-Wmissing-profile]
+# set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fprofile-generate -fprofile-use")
+
+
 
 register_fprime_deployment()
 # The following compile options will only apply to the deployment executable.
@@ -43,3 +59,8 @@ target_compile_options(${PROJECT_NAME} PUBLIC -Wno-unused-parameter)
 target_compile_options(${PROJECT_NAME} PUBLIC -Wundef)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 11)
+
+
+message(C FLAGS => ${CMAKE_C_FLAGS})
+message(CXX FLAGS => ${CMAKE_CXX_FLAGS})
+message(LINKER FLAGS => ${CMAKE_EXE_LINKER_FLAGS})
