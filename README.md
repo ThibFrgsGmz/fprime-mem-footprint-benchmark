@@ -6,7 +6,7 @@ In order to evaluate the memory footprint of F´ we simplified the reference dep
 The metrics considered relevant to evaluate the minimum size of F´ are:
 - the size of the `.text`/`.rodata`/`.data`/`.bss` sections of the binary
 - the size of the `ELF`
-- the size of the `binary` from the ELF by the command `objcopy -O binary App.bin`.
+- the size of the `binary` from the ELF by the command `objcopy -O binary App App.bin`.
 
 | ELF Header  |                                |
 |-------------|--------------------------------|
@@ -34,15 +34,16 @@ For more information, see the note on the configuration of F´ available in the 
 
 We proceeded in 7 steps, the step n repeats the same configurations as the previous step n-1 to which we add a delta by deactivating a previously activated symbol.
 
-| Step | Description                       | Size .text | Size .rodata | Size .data | Size .bss | Size elf | Size bin |
-|------|-----------------------------------|------------|--------------|------------|-----------|----------|----------|
-| 1    | Default                           | 26 Kb      | 3.2 Kb       | 24 bits    | 760 bits  | 488 Kb   | 353 Kb   |
-| 2    | FW_OBJECT_NAMES = 0               | 24.5 Kb    | 2.7 Kb       | 24 bits    | 296 bits  | 487 Kb   | 353 Kb   |
-| 3    | FW_OBJECT_REGISTRATION = 0        | 24.3 Kb    | 2.7 Kb       | 24 bits    | 288 bits  | 485 Kb   | 353 Kb   |
-| 4    | FW_PORT_TRACING = 0               | 23.7 Kb    | 2.7 Kb       | 24 bits    | 224 bits  | 465 Kb   | 337 Kb   |
-| 5    | FW_ENABLE_TEXT_LOGGING = 0        | 23.7 Kb    | 2.7 Kb       | 24 bits    | 224 bits  | 465 Kb   | 337 Kb   |
-| 6    | FW_SERIALIZABLE_TO_STRING = 0     | 21.5 Kb    | 2.4 Kb       | 24 bits    | 224 bits  | 412 Kb   | 295 Kb   |
-| 7    | FW_PORT_SERIALIZATION = 0         | 10.2 Kb    | 2.1 Kb       | 24 bits    | 216 bits  | 276 Kb   | 204 Kb   |
+| Step | Description                       | Size .text | Size .rodata | Size .data | Size .bss | Size elf     | Size bin    |
+|------|-----------------------------------|------------|--------------|------------|-----------|--------------|-------------|
+| 1    | Default                           | 26 Kb      | 3.2 Kb       | 24 bits    | 760 bits  | 77'576 bits  | 56'576 bits |
+| 2    | FW_OBJECT_NAMES = 0               | 24.5 Kb    | 2.7 Kb       | 24 bits    | 296 bits  | 77'184 bits  | 56'576 bits |
+| 3    | FW_OBJECT_REGISTRATION = 0        | 24.3 Kb    | 2.7 Kb       | 24 bits    | 288 bits  | 76'768 bits  | 56'576 bits |
+| 4    | FW_PORT_TRACING = 0               | 23.7 Kb    | 2.7 Kb       | 24 bits    | 224 bits  | 71'976 bits  | 52'480 bits |
+| 5    | FW_ENABLE_TEXT_LOGGING = 0        | 23.7 Kb    | 2.7 Kb       | 24 bits    | 224 bits  | 71'976 bits  | 52'480 bits |
+| 6    | FW_SERIALIZABLE_TO_STRING = 0     | 21.5 Kb    | 2.4 Kb       | 24 bits    | 224 bits  | 66'192 bits  | 48'384 bits |
+| 7    | FW_PORT_SERIALIZATION = 0         | 10.2 Kb    | 2.1 Kb       | 24 bits    | 216 bits  | 43'752 bits  | 32'000 bits |
+
 
 
 # Customizing the toolchain options
@@ -50,12 +51,12 @@ We proceeded in 7 steps, the step n repeats the same configurations as the previ
 Regarding the options passed to the toolchain, i.e. the compiler and the linker, we did not see any real difference compared to the measurements obtained in step 7.
 Only the linker option in step 5 subtly reduces the footprint - insignificant. We marked "x" when the value did not change.
 
-| Step | Description                         | Size .text | Size .rodata | Size .data | Size .bss | Size elf | Size bin |
-|------|-------------------------------------|------------|--------------|------------|-----------|----------|----------|
-| 1    | Step 7 configuration                | 10.197 Kb  | 2.178 Kb     | 24 bits    | 216 bits  | 276 Kb   | 204 Kb   |
-| 2    | -fno-exceptions -fno-rtti           | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
-| 3    | -ffunction-sections -fdata-sections | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
-| 4    | -flto                               | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
-| 5    | -Wl,--gc-sections                   | 10.133 Kb  | 2.154 Kb     | 16 bits    | x bits    | x Kb     | 203 Kb   |
-| 6    | -fno-unroll-loops                   | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
-| 7    | -fno-jump-tables                    | x Kb       | x Kb         | x bits     | x bits    | x Kb     | x Kb     |
+| Step | Description                         | Size .text | Size .rodata | Size .data | Size .bss | Size elf     | Size bin    |
+|------|-------------------------------------|------------|--------------|------------|-----------|--------------|-------------|
+| 1    | Step 7 configuration                | 10.197 Kb  | 2.178 Kb     | 24 bits    | 216 bits  | 43'752 bits  | 32'000 bits |
+| 2    | -fno-exceptions -fno-rtti           | x Kb       | x Kb         | x bits     | x bits    | x Kb         | x Kb        |
+| 3    | -ffunction-sections -fdata-sections | x Kb       | x Kb         | x bits     | x bits    | x Kb         | x Kb        |
+| 4    | -flto                               | x Kb       | x Kb         | x bits     | x bits    | x Kb         | x Kb        |
+| 5    | -Wl,--gc-sections                   | 10.133 Kb  | 2.154 Kb     | 16 bits    | x bits    | x Kb         | 31'992 bits |
+| 6    | -fno-unroll-loops                   | x Kb       | x Kb         | x bits     | x bits    | x Kb         | x Kb        |
+| 7    | -fno-jump-tables                    | x Kb       | x Kb         | x bits     | x bits    | x Kb         | x Kb        |
